@@ -1,1 +1,1 @@
-console.log('template-ts')
+console.log('ts-template')
