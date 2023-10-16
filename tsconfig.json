@@ -1,22 +1,35 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "CommonJS",
+    "target": "es2022",
+    "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
+    "sourceMap": false,
+    "declaration": false,
     "resolveJsonModule": true,
+    "noImplicitOverride": true,
+    "noImplicitAny": true,
     "esModuleInterop": true,
     "allowJs": true,
-    "noImplicitAny": true,
-    "lib": ["esnext"],
-    "types": ["node"]
-//    "baseUrl": ".",
-//    "paths": {
-//      "@/*": ["./src/*"]
-//    }
+    "lib": [
+      "esnext"
+    ],
+    "types": [
+      "node"
+    ]
+    //    "baseUrl": ".",
+    //    "paths": {
+    //      "@/*": ["./src/*"]
+    //    }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "scripts/rollup.config.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -22,11 +22,13 @@
   "types": "dist/index.d.ts",
   "unpkg": "dist/index.min.js",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "simple-git-hooks",
     "test": "jest",
     "dev": "tsup src/index.ts --watch src",
     "build": "pnpm clean && run-p build:bundle build:umd",
     "build:bundle": "tsup src/index.ts --dts --format cjs,esm",
-    "build:umd": "rollup -c scripts/rollup.config.js",
+    "build:umd": "rollup --config scripts/rollup.config.ts --configPlugin typescript",
     "clean": "rm -rf dist",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx,.vue",
     "release": "yunque-release --skipBuild --skipTest",
@@ -34,49 +36,47 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "^26.0.12",
-    "@types/node": "^14.14.39",
-    "@typescript-eslint/eslint-plugin": "^4.17.0",
-    "@typescript-eslint/parser": "^4.17.0",
-    "@yunquejs/release": "^0.1.4",
-    "eslint": "^7.21.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "conventional-changelog-cli": "^2.1.1",
-    "chalk": "^4.1.2",
-    "jest": "^26.1.0",
-    "lint-staged": "^10.5.4",
+    "@babel/core": "^7.23.2",
+    "@babel/plugin-transform-runtime": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-buble": "^1.0.3",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.4",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/node": "^20.8.6",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
+    "@yunquejs/release": "^0.1.9",
+    "conventional-changelog-cli": "^4.1.0",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "lint-staged": "^15.0.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.2.1",
-    "ts-jest": "^26.3.0",
-    "ts-node": "^9.1.1",
-    "tsup": "^5.11.6",
-    "typescript": "^4.2.3",
-    "yorkie": "^2.0.0",
-    "rollup": "^2.22.1",
-    "rollup-plugin-terser": "^6.1.0",
-    "rollup-plugin-typescript2": "^0.27.2",
-    "@rollup/plugin-babel": "^5.1.0",
-    "@rollup/plugin-buble": "^0.21.3",
-    "@rollup/plugin-commonjs": "^14.0.0",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^8.4.0",
-    "@rollup/plugin-replace": "^2.3.3",
-    "@babel/core": "^7.10.5",
-    "@babel/plugin-transform-runtime": "^7.10.5",
-    "@babel/preset-env": "^7.10.4"
+    "picocolors": "latest",
+    "prettier": "^3.0.3",
+    "rollup": "^4.1.4",
+    "simple-git-hooks": "latest",
+    "tslib": "^2.6.2",
+    "tsup": "^7.2.0",
+    "tsx": "latest",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "commit-msg": "node scripts/verify-commit.js"
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged --concurrent false",
+    "commit-msg": "pnpm exec tsx scripts/verifyCommit.ts $1"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,vue}": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ]
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=16.0.0"
   }
 }
