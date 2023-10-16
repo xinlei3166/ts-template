@@ -4,7 +4,6 @@ import { fileURLToPath } from 'node:url'
 import buble from '@rollup/plugin-buble'
 import commonjs from '@rollup/plugin-commonjs'
 import node from '@rollup/plugin-node-resolve'
-import babel from '@rollup/plugin-babel'
 import json from '@rollup/plugin-json'
 import replace from '@rollup/plugin-replace'
 import typescript from '@rollup/plugin-typescript'
@@ -40,7 +39,6 @@ function genConfig(input: string, name?: string) {
       node(),
       commonjs(),
       json(),
-      babel({ babelHelpers: 'bundled', exclude: 'node_modules/**' }),
       terser(),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production')
