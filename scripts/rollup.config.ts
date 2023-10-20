@@ -41,7 +41,8 @@ function genConfig(input: string, name?: string) {
       json(),
       terser(),
       replace({
-        'process.env.NODE_ENV': JSON.stringify('production')
+        'process.env.NODE_ENV': JSON.stringify('production'),
+        preventAssignment: true
       }),
       buble({
         objectAssign: 'Object.assign',
