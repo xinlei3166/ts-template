@@ -21,6 +21,14 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "unpkg": "dist/index.min.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./dist/*": "./dist/*"
+  },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "simple-git-hooks",
