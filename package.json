@@ -35,9 +35,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.23.2",
-    "@babel/plugin-transform-runtime": "^7.23.2",
-    "@babel/preset-env": "^7.23.2",
     "@rollup/plugin-buble": "^1.0.3",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.0.1",
